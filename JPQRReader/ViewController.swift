@@ -14,7 +14,8 @@ class ViewController: UIViewController {
     private let session = AVCaptureSession()
     private let output = AVCaptureMetadataOutput()
     private var input: AVCaptureDeviceInput?
-    private let decoder = MPMDecoder()
+    private let mpmDecoder = MPMDecoder()
+    private let cpmDecoder = CPMDecoder()
 
     lazy var previewLayer: CALayer = {
         let layer = AVCaptureVideoPreviewLayer(session: session)
@@ -111,7 +112,9 @@ extension ViewController: AVCaptureMetadataOutputObjectsDelegate {
         stopCapture()
 
         let message: String
-        if let data = decoder.decode(payload: payload) {
+        if let data = mpmDecoder.decode(payload: payload) {
+            message = data.description
+        } else if let data = cpmDecoder.decode(payload: payload) {
             message = data.description
         } else {
             message = "error"
