@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     private let session = AVCaptureSession()
     private let output = AVCaptureMetadataOutput()
     private var input: AVCaptureDeviceInput?
+    private let decoder = JPQRDecoder()
 
     lazy var previewLayer: CALayer = {
         let layer = AVCaptureVideoPreviewLayer(session: session)
@@ -34,19 +35,27 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard !session.isRunning else { return }
-        session.startRunning()
+        startCapture()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        guard session.isRunning else { return }
-        session.stopRunning()
+        stopCapture()
     }
 
     enum VideoError: Error {
         case denied
         case other
+    }
+
+    private func startCapture() {
+        guard !session.isRunning else { return }
+        session.startRunning()
+    }
+
+    private func stopCapture() {
+        guard session.isRunning else { return }
+        session.stopRunning()
     }
 
     private func setupVideo() throws {
@@ -91,6 +100,21 @@ class ViewController: UIViewController {
 
 extension ViewController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        print(metadataObjects)
+        let res: [String] = metadataObjects.compactMap { metadata in
+            if let code = metadata as? AVMetadataMachineReadableCodeObject, code.type == .qr, let payload = code.stringValue {
+                return payload
+            } else {
+                return nil
+            }
+        }
+        guard let payload = res.first else { return }
+        stopCapture()
+
+        let con = UIAlertController(title: nil, message: String(describing: payload), preferredStyle: .alert)
+        con.addAction(.init(title: "OK", style: .default, handler: { [weak self] _ in
+            self?.startCapture()
+            con.dismiss(animated: true)
+        }))
+        present(con, animated: true, completion: nil)
     }
 }
