@@ -51,7 +51,6 @@ class CPMDecoder {
                 index += 1
                 let appData = buff[index..<index + len]
                 index += len
-                print(tag, appData)
                 res.append(.init(tag: tag, hexValue: Array(appData)))
                 let remain = buff[index..<buff.count]
                 buff = Array(remain)
@@ -67,17 +66,17 @@ class CPMDecoder {
         let format: Format
         
         struct POIData {
-            let adfName: [String]
+            let adfName: String
             let appLabel: [String]?
             let content: POIContent
             
             enum POIContent {
-                case track2EquivalentData([String])
-                case applicationPAN([String])
+                case track2EquivalentData(Track2EquivalentData)
+                case applicationPAN(String)
             }
             init?(input: [TLV]) {
                 if let adfName = input.first(where: { $0.tag == "4f" })?.hexValue {
-                    self.adfName = adfName
+                    self.adfName = adfName.joined() //Not sure
                 } else {
                     return nil
                 }
@@ -85,9 +84,10 @@ class CPMDecoder {
             
                 var content: POIContent? = nil
                 if let val = input.first(where: { $0.tag == "57" })?.hexValue {
-                    content = .track2EquivalentData(val)
+                    let data = Track2EquivalentData(payload: val)
+                    content = .track2EquivalentData(data)
                 } else if let val = input.first(where: { $0.tag == "5A" })?.hexValue {
-                    content = .applicationPAN(val)
+                    content = .applicationPAN(val.joined())
                 }
                 if let content = content {
                     self.content = content
@@ -96,9 +96,75 @@ class CPMDecoder {
                 }
             }
         }
+        struct Track2EquivalentData {
+            let pan: String
+            let expirationDate: String
+            let serviceCode: String
+            let discretionaryData: String?
+            
+            init(payload: [String]) {
+                let val = payload.joined()
+                let comps = val.components(separatedBy: "d")
+                self.pan = comps[0]
+                var remain = Array(comps[1])
+                self.expirationDate = String(remain.prefix(4))
+                remain = Array(remain.suffix(from: 4))
+                self.serviceCode = String(remain.prefix(3))
+                remain = Array(remain.suffix(from: 3))
+                self.discretionaryData = String(remain).components(separatedBy: "f").first
+            }
+        }
         let poiDataList: [POIData]
         let commonData: [String]?
         let otherData: [[String]]
     }
 }
 
+extension CPMDecoder.CPMEMV: CustomStringConvertible {
+    var description: String {
+        return """
+        Format: \(format)
+        POI Data:
+        \(poiDataList.map{ $0.description }.joined(separator: "\n"))
+        CommonData: \(commonData?.description ?? "-")
+        OtherData: \(otherData)
+        """
+    }
+}
+extension CPMDecoder.CPMEMV.Format: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .emv: return "EMV (CPM)"
+        case .jpqr: return "JPQR (CPM)"
+        }
+    }
+}
+extension CPMDecoder.CPMEMV.POIData: CustomStringConvertible {
+    var description: String {
+        return """
+        ADF Name: \(adfName)
+        \(content)
+        """
+    }
+}
+extension CPMDecoder.CPMEMV.POIData.POIContent: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .applicationPAN(let pan):
+            return "Application PAN: \(pan)"
+        case .track2EquivalentData(let track2):
+            return track2.description
+        }
+    }
+}
+extension CPMDecoder.CPMEMV.Track2EquivalentData: CustomStringConvertible {
+    var description: String {
+        return """
+        [Track2]
+        PAN: \(pan)
+        ExpirationDate: \(expirationDate)
+        ServiceCode: \(serviceCode)
+        DiscretionaryDate: \(discretionaryData ?? "-")
+        """
+    }
+}

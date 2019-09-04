@@ -16,7 +16,7 @@ class MPMDecoderTests: XCTestCase {
             XCTFail()
             return
         }
-        print(res)
+        //print(res)
         let root = res.root
         XCTAssertEqual(root.payloadFormatIndicator, "01")
         XCTAssertEqual(root.pointofInitiationMethod, MPMDecoder.PointofInitiationMethod.static)
