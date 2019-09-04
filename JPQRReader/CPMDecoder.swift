@@ -103,7 +103,13 @@ class CPMDecoder {
             let discretionaryData: String?
             
             init(payload: [String]) {
-                let val = payload.joined()
+                let val = payload.map { chr in
+                    if chr.count == 1 {
+                        return "0\(chr)"
+                    } else {
+                        return chr
+                    }
+                }.joined()
                 let comps = val.components(separatedBy: "d")
                 self.pan = comps[0]
                 var remain = Array(comps[1])

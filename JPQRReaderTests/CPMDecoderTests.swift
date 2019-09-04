@@ -22,11 +22,17 @@ class CPMDecoderTests: XCTestCase {
         case .track2EquivalentData(let track2):
             XCTAssertEqual(track2.pan, "1234567890123458")
             XCTAssertEqual(track2.expirationDate, "1912")
-            XCTAssertEqual(track2.serviceCode, "211")
-            XCTAssertEqual(track2.discretionaryData, "2345")
+            XCTAssertEqual(track2.serviceCode, "201")
+            XCTAssertEqual(track2.discretionaryData, "12345")
         default:
             XCTFail()
         }
-
+    }
+    
+    func testMerpayCPM() {
+        let payload = "hQVDUFYwMWEfTwigAAAAZQOSAlcTMViZAHkkKUPUkSEhAAAFEgAADw=="
+        let decoder = CPMDecoder()
+        let res = decoder.decode(payload: payload)!
+        print(res)
     }
 }
