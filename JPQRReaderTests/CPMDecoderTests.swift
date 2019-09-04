@@ -14,7 +14,8 @@ class CPMDecoderTests: XCTestCase {
         let decoder = CPMDecoder()
         let payload = "hQVDUFYwMWEaTwegAAAAVVVVVw8SNFZ4kBI0WNGRIgESNF8="
         let res = decoder.decode(payload: payload)!
-        XCTAssertEqual(res.format, CPMEMV.Format.emv)
+        XCTAssertEqual(res.format, CPMDecoder.CPMEMV.Format.emv)
+        
 
     }
 }
