@@ -1,5 +1,5 @@
 //
-//  JPQRDecoder.swift
+//  MPMDecoder.swift
 //  JPQRReader
 //
 //  Created by kenmaz on 2019/09/04.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class JPQRDecoder {
+class MPMDecoder {
     struct JPQR: CustomStringConvertible {
         struct MerchantAccountInformation: CustomStringConvertible {
             let globallyUniqueIdentifier: String
@@ -190,7 +190,7 @@ class JPQRDecoder {
             } else if let val = range(range: 17...25) {
                 merchantAccountInformation = .emvco(val)
             } else if let val = range(range: 26...26) {
-                if let jpqrInfo = JPQRDecoder.JPQR.MerchantAccountInformation(payload: val) {
+                if let jpqrInfo = MPMDecoder.JPQR.MerchantAccountInformation(payload: val) {
                     merchantAccountInformation = .jpqr(jpqrInfo)
                 } else {
                     return nil

@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     private let session = AVCaptureSession()
     private let output = AVCaptureMetadataOutput()
     private var input: AVCaptureDeviceInput?
-    private let decoder = JPQRDecoder()
+    private let decoder = MPMDecoder()
 
     lazy var previewLayer: CALayer = {
         let layer = AVCaptureVideoPreviewLayer(session: session)

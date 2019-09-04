@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8AA6095D231F718F0072ADB2 /* JPQRDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6095C231F718F0072ADB2 /* JPQRDecoder.swift */; };
+		8AA6095D231F718F0072ADB2 /* MPMDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6095C231F718F0072ADB2 /* MPMDecoder.swift */; };
 		8AC11652231F7EE200C561B7 /* JPQRReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC11651231F7EE200C561B7 /* JPQRReaderTests.swift */; };
-		8AC11659231F7F1800C561B7 /* JPQRDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6095C231F718F0072ADB2 /* JPQRDecoder.swift */; };
+		8AC11659231F7F1800C561B7 /* MPMDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6095C231F718F0072ADB2 /* MPMDecoder.swift */; };
 		8AEFE31D231F69E3002F6F71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFE31C231F69E3002F6F71 /* AppDelegate.swift */; };
 		8AEFE31F231F69E3002F6F71 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFE31E231F69E3002F6F71 /* ViewController.swift */; };
 		8AEFE322231F69E3002F6F71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AEFE320231F69E3002F6F71 /* Main.storyboard */; };
@@ -29,7 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8AA6095C231F718F0072ADB2 /* JPQRDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPQRDecoder.swift; sourceTree = "<group>"; };
+		8AA6095C231F718F0072ADB2 /* MPMDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPMDecoder.swift; sourceTree = "<group>"; };
 		8AC1164F231F7EE200C561B7 /* JPQRReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JPQRReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AC11651231F7EE200C561B7 /* JPQRReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPQRReaderTests.swift; sourceTree = "<group>"; };
 		8AC11653231F7EE200C561B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 			children = (
 				8AEFE31C231F69E3002F6F71 /* AppDelegate.swift */,
 				8AEFE31E231F69E3002F6F71 /* ViewController.swift */,
-				8AA6095C231F718F0072ADB2 /* JPQRDecoder.swift */,
+				8AA6095C231F718F0072ADB2 /* MPMDecoder.swift */,
 				8AEFE320231F69E3002F6F71 /* Main.storyboard */,
 				8AEFE323231F69E4002F6F71 /* Assets.xcassets */,
 				8AEFE325231F69E4002F6F71 /* LaunchScreen.storyboard */,
@@ -214,7 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AC11652231F7EE200C561B7 /* JPQRReaderTests.swift in Sources */,
-				8AC11659231F7F1800C561B7 /* JPQRDecoder.swift in Sources */,
+				8AC11659231F7F1800C561B7 /* MPMDecoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AEFE31F231F69E3002F6F71 /* ViewController.swift in Sources */,
-				8AA6095D231F718F0072ADB2 /* JPQRDecoder.swift in Sources */,
+				8AA6095D231F718F0072ADB2 /* MPMDecoder.swift in Sources */,
 				8AEFE31D231F69E3002F6F71 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
