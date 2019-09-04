@@ -111,7 +111,7 @@ class MPMDecoder {
             return """
             使用言語: \(languagePreference)
             契約店名: \(merchantName)
-            契約店名: \(merchantCity ?? "-")
+            契約店所在地: \(merchantCity ?? "-")
             """
         }
     }
@@ -273,6 +273,7 @@ class MPMDecoder {
             取引金額: \(transactionAmount ?? "-")
             国コード: \(countryCode)
             契約店名: \(merchantName)
+            契約店所在地: \(merchantCity)
             契約店郵便番号: \(merchantCity)
             ■契約店情報(Localized)
             \(merchantInformationLanguageTemplate?.description ?? "-")
