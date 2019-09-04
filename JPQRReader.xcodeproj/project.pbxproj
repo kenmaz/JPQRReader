@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8AA6095D231F718F0072ADB2 /* JPQRDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6095C231F718F0072ADB2 /* JPQRDecoder.swift */; };
+		8AC11652231F7EE200C561B7 /* JPQRReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC11651231F7EE200C561B7 /* JPQRReaderTests.swift */; };
+		8AC11659231F7F1800C561B7 /* JPQRDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6095C231F718F0072ADB2 /* JPQRDecoder.swift */; };
 		8AEFE31D231F69E3002F6F71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFE31C231F69E3002F6F71 /* AppDelegate.swift */; };
 		8AEFE31F231F69E3002F6F71 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFE31E231F69E3002F6F71 /* ViewController.swift */; };
 		8AEFE322231F69E3002F6F71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AEFE320231F69E3002F6F71 /* Main.storyboard */; };
@@ -16,8 +18,21 @@
 		8AEFE330231F6A14002F6F71 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AEFE32F231F6A14002F6F71 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8AC11654231F7EE200C561B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8AEFE311231F69E3002F6F71 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8AEFE318231F69E3002F6F71;
+			remoteInfo = JPQRReader;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		8AA6095C231F718F0072ADB2 /* JPQRDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPQRDecoder.swift; sourceTree = "<group>"; };
+		8AC1164F231F7EE200C561B7 /* JPQRReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JPQRReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8AC11651231F7EE200C561B7 /* JPQRReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPQRReaderTests.swift; sourceTree = "<group>"; };
+		8AC11653231F7EE200C561B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AEFE319231F69E3002F6F71 /* JPQRReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JPQRReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AEFE31C231F69E3002F6F71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AEFE31E231F69E3002F6F71 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,6 +44,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8AC1164C231F7EE200C561B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8AEFE316231F69E3002F6F71 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -40,10 +62,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8AC11650231F7EE200C561B7 /* JPQRReaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				8AC11651231F7EE200C561B7 /* JPQRReaderTests.swift */,
+				8AC11653231F7EE200C561B7 /* Info.plist */,
+			);
+			path = JPQRReaderTests;
+			sourceTree = "<group>";
+		};
 		8AEFE310231F69E3002F6F71 = {
 			isa = PBXGroup;
 			children = (
 				8AEFE31B231F69E3002F6F71 /* JPQRReader */,
+				8AC11650231F7EE200C561B7 /* JPQRReaderTests */,
 				8AEFE31A231F69E3002F6F71 /* Products */,
 				8AEFE32E231F6A14002F6F71 /* Frameworks */,
 			);
@@ -53,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				8AEFE319231F69E3002F6F71 /* JPQRReader.app */,
+				8AC1164F231F7EE200C561B7 /* JPQRReaderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,6 +115,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8AC1164E231F7EE200C561B7 /* JPQRReaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8AC11658231F7EE200C561B7 /* Build configuration list for PBXNativeTarget "JPQRReaderTests" */;
+			buildPhases = (
+				8AC1164B231F7EE200C561B7 /* Sources */,
+				8AC1164C231F7EE200C561B7 /* Frameworks */,
+				8AC1164D231F7EE200C561B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8AC11655231F7EE200C561B7 /* PBXTargetDependency */,
+			);
+			name = JPQRReaderTests;
+			productName = JPQRReaderTests;
+			productReference = 8AC1164F231F7EE200C561B7 /* JPQRReaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8AEFE318231F69E3002F6F71 /* JPQRReader */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8AEFE32B231F69E4002F6F71 /* Build configuration list for PBXNativeTarget "JPQRReader" */;
@@ -109,6 +160,10 @@
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = net.kenmaz;
 				TargetAttributes = {
+					8AC1164E231F7EE200C561B7 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = 8AEFE318231F69E3002F6F71;
+					};
 					8AEFE318231F69E3002F6F71 = {
 						CreatedOnToolsVersion = 10.3;
 					};
@@ -128,11 +183,19 @@
 			projectRoot = "";
 			targets = (
 				8AEFE318231F69E3002F6F71 /* JPQRReader */,
+				8AC1164E231F7EE200C561B7 /* JPQRReaderTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8AC1164D231F7EE200C561B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8AEFE317231F69E3002F6F71 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -146,6 +209,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8AC1164B231F7EE200C561B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8AC11652231F7EE200C561B7 /* JPQRReaderTests.swift in Sources */,
+				8AC11659231F7F1800C561B7 /* JPQRDecoder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8AEFE315231F69E3002F6F71 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -157,6 +229,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8AC11655231F7EE200C561B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8AEFE318231F69E3002F6F71 /* JPQRReader */;
+			targetProxy = 8AC11654231F7EE200C561B7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8AEFE320231F69E3002F6F71 /* Main.storyboard */ = {
@@ -178,6 +258,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8AC11656231F7EE200C561B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6J3GVW7UN7;
+				INFOPLIST_FILE = JPQRReaderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.kenmaz.JPQRReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JPQRReader.app/JPQRReader";
+			};
+			name = Debug;
+		};
+		8AC11657231F7EE200C561B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6J3GVW7UN7;
+				INFOPLIST_FILE = JPQRReaderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.kenmaz.JPQRReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JPQRReader.app/JPQRReader";
+			};
+			name = Release;
+		};
 		8AEFE329231F69E4002F6F71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -333,6 +453,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8AC11658231F7EE200C561B7 /* Build configuration list for PBXNativeTarget "JPQRReaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8AC11656231F7EE200C561B7 /* Debug */,
+				8AC11657231F7EE200C561B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8AEFE314231F69E3002F6F71 /* Build configuration list for PBXProject "JPQRReader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

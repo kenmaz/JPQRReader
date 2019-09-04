@@ -110,7 +110,14 @@ extension ViewController: AVCaptureMetadataOutputObjectsDelegate {
         guard let payload = res.first else { return }
         stopCapture()
 
-        let con = UIAlertController(title: nil, message: String(describing: payload), preferredStyle: .alert)
+        let message: String
+        if let data = decoder.decode(payload: payload) {
+            message = data.description
+        } else {
+            message = "error"
+        }
+
+        let con = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         con.addAction(.init(title: "OK", style: .default, handler: { [weak self] _ in
             self?.startCapture()
             con.dismiss(animated: true)
