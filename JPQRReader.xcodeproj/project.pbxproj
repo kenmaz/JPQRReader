@@ -10,6 +10,9 @@
 		8AA6095D231F718F0072ADB2 /* MPMDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6095C231F718F0072ADB2 /* MPMDecoder.swift */; };
 		8AC11652231F7EE200C561B7 /* MPMDecoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC11651231F7EE200C561B7 /* MPMDecoderTests.swift */; };
 		8AC11659231F7F1800C561B7 /* MPMDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6095C231F718F0072ADB2 /* MPMDecoder.swift */; };
+		8AC1165B231FB98300C561B7 /* CPMDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC1165A231FB98300C561B7 /* CPMDecoder.swift */; };
+		8AC1165D231FBC1000C561B7 /* CPMDecoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC1165C231FBC1000C561B7 /* CPMDecoderTests.swift */; };
+		8AC1165E231FBC1600C561B7 /* CPMDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC1165A231FB98300C561B7 /* CPMDecoder.swift */; };
 		8AEFE31D231F69E3002F6F71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFE31C231F69E3002F6F71 /* AppDelegate.swift */; };
 		8AEFE31F231F69E3002F6F71 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFE31E231F69E3002F6F71 /* ViewController.swift */; };
 		8AEFE322231F69E3002F6F71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AEFE320231F69E3002F6F71 /* Main.storyboard */; };
@@ -33,6 +36,8 @@
 		8AC1164F231F7EE200C561B7 /* JPQRReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JPQRReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AC11651231F7EE200C561B7 /* MPMDecoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPMDecoderTests.swift; sourceTree = "<group>"; };
 		8AC11653231F7EE200C561B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8AC1165A231FB98300C561B7 /* CPMDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPMDecoder.swift; sourceTree = "<group>"; };
+		8AC1165C231FBC1000C561B7 /* CPMDecoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPMDecoderTests.swift; sourceTree = "<group>"; };
 		8AEFE319231F69E3002F6F71 /* JPQRReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JPQRReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AEFE31C231F69E3002F6F71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AEFE31E231F69E3002F6F71 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				8AC11651231F7EE200C561B7 /* MPMDecoderTests.swift */,
+				8AC1165C231FBC1000C561B7 /* CPMDecoderTests.swift */,
 				8AC11653231F7EE200C561B7 /* Info.plist */,
 			);
 			path = JPQRReaderTests;
@@ -96,6 +102,7 @@
 				8AEFE31C231F69E3002F6F71 /* AppDelegate.swift */,
 				8AEFE31E231F69E3002F6F71 /* ViewController.swift */,
 				8AA6095C231F718F0072ADB2 /* MPMDecoder.swift */,
+				8AC1165A231FB98300C561B7 /* CPMDecoder.swift */,
 				8AEFE320231F69E3002F6F71 /* Main.storyboard */,
 				8AEFE323231F69E4002F6F71 /* Assets.xcassets */,
 				8AEFE325231F69E4002F6F71 /* LaunchScreen.storyboard */,
@@ -214,7 +221,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AC11652231F7EE200C561B7 /* MPMDecoderTests.swift in Sources */,
+				8AC1165E231FBC1600C561B7 /* CPMDecoder.swift in Sources */,
 				8AC11659231F7F1800C561B7 /* MPMDecoder.swift in Sources */,
+				8AC1165D231FBC1000C561B7 /* CPMDecoderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AEFE31F231F69E3002F6F71 /* ViewController.swift in Sources */,
+				8AC1165B231FB98300C561B7 /* CPMDecoder.swift in Sources */,
 				8AA6095D231F718F0072ADB2 /* MPMDecoder.swift in Sources */,
 				8AEFE31D231F69E3002F6F71 /* AppDelegate.swift in Sources */,
 			);
