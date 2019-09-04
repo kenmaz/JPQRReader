@@ -8,10 +8,10 @@
 
 import XCTest
 
-class JPQRReaderTests: XCTestCase {
+class MPMDecoderTests: XCTestCase {
 
     func test() {
-        let decoder = JPQRDecoder()
+        let decoder = MPMDecoder()
         guard let res = decoder.decode(payload: "00020164210002JA0111JPQRMPM本舗食堂53033925903xxx6003xxx610710600325802JP01021126680019jp.or.paymentsjapan0113000000000000102040001030600000104060000015204412163046D60") else {
             XCTFail()
             return
