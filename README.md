@@ -1,7 +1,7 @@
 # JPQRReader
 This is the iOS App that decoding EMV<sup>®</sup><sup>[1](#1)</sup> and JPQR QR code. You can check the content embed in a QR code<sup>[2](#2)</sup>.
 
-
+<img src="https://raw.githubusercontent.com/kenmaz/JPQRReader/master/demo.jpeg" width=300px>
 
 ## Supported Format
 - [EMV(CPM)](https://www.emvco.com/wp-content/uploads/documents/EMVCo-Consumer-Presented-QR-Specification-v1-1.pdf)
