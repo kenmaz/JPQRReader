@@ -25,6 +25,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "JPQR/EMV Reader"
         do {
             try setupVideo()
             previewLayer.frame = view.bounds

@@ -10,7 +10,7 @@ import XCTest
 
 class CPMDecoderTests: XCTestCase {
 
-    func test() {
+    func testEMVCPM_Example1() {
         let decoder = CPMDecoder()
         let payload = "hQVDUFYwMWEaTwegAAAAVVVVVw8SNFZ4kBI0WNGRIgESNF8="
         let res = decoder.decode(payload: payload)!
@@ -28,7 +28,17 @@ class CPMDecoderTests: XCTestCase {
             XCTFail()
         }
     }
-    
+
+    func testEMVCPM_Example2() {
+        let decoder = CPMDecoder()
+        let payload = "hQVDUFYwMWETTwegAAAAVVVVUAhQcm9kdWN0MWETTwegAAAAZmZmUAhQcm9kdWN0MmJJWggSNFZ4kBI0WF8gDkNBUkRIT0xERVIvRU1WXy0IcnVlc2RlZW5kIZ8QBwYBCgMAAACfJghYT9OF+iNLzJ82AgABnzcEbVjvEw=="
+        let res = decoder.decode(payload: payload)!
+        print(res)
+        XCTAssertEqual(res.format, CPMDecoder.CPMEMV.Format.emv)
+        XCTAssertNil(res.poiDataList.first)
+        XCTAssertNotNil(res.commonData)
+    }
+
     func testMerpayCPM() {
         let payload = "hQVDUFYwMWEfTwigAAAAZQOSAlcTMViZAHkkKUPUkSEhAAAFEgAADw=="
         let decoder = CPMDecoder()
