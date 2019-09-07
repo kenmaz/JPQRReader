@@ -3,6 +3,9 @@ This is the iOS App that decoding EMV<sup>®</sup><sup>[1](#1)</sup> and JPQR QR
 
 <img src="https://raw.githubusercontent.com/kenmaz/JPQRReader/master/demo.jpeg" width=300px>
 
+This project was introduced in my iOSDC2019 presentaion. Please also see that.
+https://speakerdeck.com/kenmaz/how-to-develop-a-mobile-payment-app
+
 ## Supported Format
 - [EMV(CPM)](https://www.emvco.com/wp-content/uploads/documents/EMVCo-Consumer-Presented-QR-Specification-v1-1.pdf)
 - [EMV(MPM)](https://www.emvco.com/wp-content/uploads/documents/EMVCo-Merchant-Presented-QR-Specification-v1-1.pdf)
