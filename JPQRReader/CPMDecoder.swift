@@ -20,33 +20,76 @@ class CPMDecoder {
         buff = Array(buff[7..<buff.count])
 
         var poiDataList: [CPMEMV.POIData] = []
-        var commonData: [String]?
-        var otherDataList: [[String]] = []
+        var commonData: [CPMEMV.POIData] = []
+        var otherDataList: [CPMEMV.POIData] = []
         let entries = TLV.buffToEntries(input: buff)
         entries?.forEach { tlv in
             switch tlv.tag {
-            case "61":
+            case .applicationTemplate:
                 if let sub = TLV.buffToEntries(input: tlv.hexValue), let poiData = CPMEMV.POIData(input: sub) {
                     poiDataList.append(poiData)
                 }
-            case "62":
-                commonData = tlv.hexValue
+            case .commonDataTemplate:
+                if let sub = TLV.buffToEntries(input: tlv.hexValue), let poiData = CPMEMV.POIData(input: sub) {
+                    commonData.append(poiData)
+                }
             default:
-                otherDataList.append(tlv.hexValue)
+                if let sub = TLV.buffToEntries(input: tlv.hexValue), let poiData = CPMEMV.POIData(input: sub) {
+                    otherDataList.append(poiData)
+                }
             }
         }
         return CPMEMV(format: format, poiDataList: poiDataList, commonData: commonData, otherData: otherDataList)
     }
     struct TLV {
-        let tag: String
+        let tag: Tag
         let hexValue: [String]
+        
+        enum Tag: String, CaseIterable {
+            case adfName = "4f"
+            case applicationLabel = "50"
+            case applicationPAN = "5a"
+            case applicationSpecificTransparentTemplate = "63"
+            case applicationTemplate = "61"
+            case applicationVersionNumber = "9f08"
+            case commonDataTemplate = "62"
+            case commonDataTransparentTemplate = "64"
+            case cardholderName = "5f20"
+            case issuerURL = "5f50"
+            case last4DigitsOfPAN = "9f25"
+            case languagePreference = "5f2d"
+            case track2EquivalentData = "57"
+            case tokenRequestorID = "9f19"
+            case payloadFormatIndicator = "85"
+            case paymentAccountReference = "9f24"
+            case unknown = ""
+        }
+        
         static func buffToEntries(input: [String]) -> [TLV]? {
             var res: [TLV] = []
             var buff = input
             while buff.count > 0 {
                 var index = 0
-                let tag = buff[index]
-                index += 1
+                let tag1 = buff[index]
+                let tag2 = buff[index] + buff[index + 1]
+                
+                var emvTag: Tag? = nil
+                for tag in Tag.allCases {
+                    switch tag.rawValue {
+                    case tag1:
+                        emvTag = tag
+                        index += 1
+                        break
+                    case tag2:
+                        emvTag = tag
+                        index += 2
+                        break
+                    default:
+                        continue
+                    }
+                }
+                let tag = emvTag ?? Tag.unknown
+                
                 guard let len = Int(buff[index], radix: 16) else { return nil }
                 index += 1
                 let appData = buff[index..<index + len]
@@ -64,35 +107,71 @@ class CPMDecoder {
             case jpqr = "hQVKUFFS"
         }
         let format: Format
-        
-        struct POIData {
-            let adfName: String
-            let appLabel: [String]?
-            let content: POIContent
-            
-            enum POIContent {
-                case track2EquivalentData(Track2EquivalentData)
-                case applicationPAN(String)
-            }
+
+        class POIData {
+            var adfName: String?
+            var appLabel: String?
+            var track2EquivalentData: Track2EquivalentData?
+            var applicationPAN: String?
+            var applicationSpecificTransparentTemplate: [String]?
+            var applicationTemplate: POIData?
+            var applicationVersionNumber: String?
+            var commonDataTemplate: POIData?
+            var commonDataTransparentTemplate: [String]?
+            var cardholderName: String?
+            var issuerURL: String?
+            var last4DigitsOfPAN: String?
+            var languagePreference: String?
+            var tokenRequestorID: String?
+            var payloadFormatIndicator: String?
+            var paymentAccountReference: String?
+            var unknown: [String] = []
+
             init?(input: [TLV]) {
-                if let adfName = input.first(where: { $0.tag == "4f" })?.hexValue {
-                    self.adfName = adfName.joined() //Not sure
-                } else {
-                    return nil
-                }
-                self.appLabel = input.first(where: { $0.tag == "50" })?.hexValue
-            
-                var content: POIContent? = nil
-                if let val = input.first(where: { $0.tag == "57" })?.hexValue {
-                    let data = Track2EquivalentData(payload: val)
-                    content = .track2EquivalentData(data)
-                } else if let val = input.first(where: { $0.tag == "5A" })?.hexValue {
-                    content = .applicationPAN(val.joined())
-                }
-                if let content = content {
-                    self.content = content
-                } else {
-                    return nil
+                input.forEach { tlv in
+                    switch tlv.tag {
+                    case .adfName:
+                        adfName = tlv.hexValue.joined() //Not sure
+                    case .applicationLabel:
+                        let data = Data(hex: tlv.hexValue.joined())
+                        appLabel = String(bytes: data, encoding: .utf8)
+                    case .applicationPAN:
+                        applicationPAN = tlv.hexValue.joined()
+                    case .applicationSpecificTransparentTemplate:
+                        applicationSpecificTransparentTemplate = tlv.hexValue
+                    case .applicationTemplate:
+                        if let sub = TLV.buffToEntries(input: tlv.hexValue) {
+                            applicationTemplate = POIData(input: sub)
+                        }
+                    case .applicationVersionNumber:
+                        applicationVersionNumber = tlv.hexValue.joined()
+                    case .commonDataTemplate:
+                        if let sub = TLV.buffToEntries(input: tlv.hexValue) {
+                            commonDataTemplate = POIData(input: sub)
+                        }
+                    case .commonDataTransparentTemplate:
+                        commonDataTransparentTemplate = tlv.hexValue
+                    case .cardholderName:
+                        let data = Data(hex: tlv.hexValue.joined())
+                        cardholderName = String(bytes: data, encoding: .utf8)
+                    case .issuerURL:
+                        issuerURL = tlv.hexValue.joined()
+                    case .last4DigitsOfPAN:
+                        last4DigitsOfPAN = tlv.hexValue.joined()
+                    case .languagePreference:
+                        let data = Data(hex: tlv.hexValue.joined())
+                        languagePreference = String(bytes: data, encoding: .utf8)
+                    case .track2EquivalentData:
+                        track2EquivalentData = Track2EquivalentData(payload: tlv.hexValue)
+                    case .tokenRequestorID:
+                        tokenRequestorID = tlv.hexValue.joined()
+                    case .payloadFormatIndicator:
+                        payloadFormatIndicator = tlv.hexValue.joined()
+                    case .paymentAccountReference:
+                        paymentAccountReference = tlv.hexValue.joined()
+                    case .unknown:
+                        unknown.append(tlv.hexValue.joined())
+                    }
                 }
             }
         }
@@ -121,19 +200,22 @@ class CPMDecoder {
             }
         }
         let poiDataList: [POIData]
-        let commonData: [String]?
-        let otherData: [[String]]
+        let commonData: [POIData]
+        let otherData: [POIData]
     }
 }
 
 extension CPMDecoder.CPMEMV: CustomStringConvertible {
     var description: String {
+        var list: [String] = []
+        list.append("Format: \(format)")
+        poiDataList.forEach{ list.append("[Application]: \n\($0)") }
+        commonData.forEach{ list.append("[Common Data]: \n\($0)") }
+        otherData.forEach{ list.append("[Other Data] \n: \($0)")}
         return """
-        Format: \(format)
-        POI Data:
-        \(poiDataList.map{ $0.description }.joined(separator: "\n"))
-        CommonData: \(commonData?.description ?? "-")
-        OtherData: \(otherData)
+        ---------
+        \(list.joined(separator: "\n"))
+        ---------
         """
     }
 }
@@ -147,30 +229,35 @@ extension CPMDecoder.CPMEMV.Format: CustomStringConvertible {
 }
 extension CPMDecoder.CPMEMV.POIData: CustomStringConvertible {
     var description: String {
-        return """
-        ADF Name: \(adfName)
-        \(content)
-        """
-    }
-}
-extension CPMDecoder.CPMEMV.POIData.POIContent: CustomStringConvertible {
-    var description: String {
-        switch self {
-        case .applicationPAN(let pan):
-            return "Application PAN: \(pan)"
-        case .track2EquivalentData(let track2):
-            return track2.description
-        }
+        var list: [String] = []
+        adfName.flatMap{ list.append("\tADF Name: \($0)") }
+        appLabel.flatMap{ list.append("\tApplication Label: \($0)") }
+        track2EquivalentData.flatMap{ list.append("\tTrack2 Equivalent Data: \n \($0)") }
+        applicationPAN.flatMap{ list.append("\tApplication PAN: \($0)") }
+        applicationSpecificTransparentTemplate.flatMap{
+            list.append("\tApplication Specific Transparent Template: \($0.joined())") }
+        applicationTemplate.flatMap{ list.append("\tApplication Template: \($0)") }
+        applicationVersionNumber.flatMap{ list.append("\tApplication Version Number: \($0)") }
+        commonDataTemplate.flatMap{ list.append("\tCommon Data Template: \($0)") }
+        commonDataTransparentTemplate.flatMap{ list.append("\tCommon Data Transparent Template: \($0.joined())") }
+        cardholderName.flatMap{ list.append("\tCardholder Name: \($0)") }
+        issuerURL.flatMap{ list.append("\tIssuer URL: \($0)") }
+        last4DigitsOfPAN.flatMap{ list.append("\tLast 4 Digits of PAN: \($0)") }
+        languagePreference.flatMap{ list.append("\tLanguage Preference: \($0)") }
+        tokenRequestorID.flatMap{ list.append("\tToken Requestor ID: \($0)") }
+        payloadFormatIndicator.flatMap{ list.append("\tPayload Format Indicator: \($0)") }
+        paymentAccountReference.flatMap{ list.append("\tPayment Account Reference: \($0)") }
+        unknown.forEach{ list.append("\tUnknown: \($0)") }
+        return list.joined(separator: "\n")
     }
 }
 extension CPMDecoder.CPMEMV.Track2EquivalentData: CustomStringConvertible {
     var description: String {
         return """
-        [Track2]
-        PAN: \(pan)
-        ExpirationDate: \(expirationDate)
-        ServiceCode: \(serviceCode)
-        DiscretionaryDate: \(discretionaryData ?? "-")
+        \t\tPAN: \(pan)
+        \t\tExpirationDate: \(expirationDate)
+        \t\tServiceCode: \(serviceCode)
+        \t\tDiscretionaryDate: \(discretionaryData ?? "-")
         """
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A7A75E42324C6730094C015 /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A75E32324C6730094C015 /* Data+Hex.swift */; };
+		8A7A75E52324C83F0094C015 /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A75E32324C6730094C015 /* Data+Hex.swift */; };
 		8AA6095D231F718F0072ADB2 /* MPMDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6095C231F718F0072ADB2 /* MPMDecoder.swift */; };
 		8AC11652231F7EE200C561B7 /* MPMDecoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC11651231F7EE200C561B7 /* MPMDecoderTests.swift */; };
 		8AC11659231F7F1800C561B7 /* MPMDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6095C231F718F0072ADB2 /* MPMDecoder.swift */; };
@@ -32,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A7A75E32324C6730094C015 /* Data+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Hex.swift"; sourceTree = "<group>"; };
 		8AA6095C231F718F0072ADB2 /* MPMDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPMDecoder.swift; sourceTree = "<group>"; };
 		8AC1164F231F7EE200C561B7 /* JPQRReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JPQRReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AC11651231F7EE200C561B7 /* MPMDecoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPMDecoderTests.swift; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 				8AEFE31E231F69E3002F6F71 /* ViewController.swift */,
 				8AA6095C231F718F0072ADB2 /* MPMDecoder.swift */,
 				8AC1165A231FB98300C561B7 /* CPMDecoder.swift */,
+				8A7A75E32324C6730094C015 /* Data+Hex.swift */,
 				8AEFE320231F69E3002F6F71 /* Main.storyboard */,
 				8AEFE323231F69E4002F6F71 /* Assets.xcassets */,
 				8AEFE325231F69E4002F6F71 /* LaunchScreen.storyboard */,
@@ -221,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AC11652231F7EE200C561B7 /* MPMDecoderTests.swift in Sources */,
+				8A7A75E52324C83F0094C015 /* Data+Hex.swift in Sources */,
 				8AC1165E231FBC1600C561B7 /* CPMDecoder.swift in Sources */,
 				8AC11659231F7F1800C561B7 /* MPMDecoder.swift in Sources */,
 				8AC1165D231FBC1000C561B7 /* CPMDecoderTests.swift in Sources */,
@@ -232,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AEFE31F231F69E3002F6F71 /* ViewController.swift in Sources */,
+				8A7A75E42324C6730094C015 /* Data+Hex.swift in Sources */,
 				8AC1165B231FB98300C561B7 /* CPMDecoder.swift in Sources */,
 				8AA6095D231F718F0072ADB2 /* MPMDecoder.swift in Sources */,
 				8AEFE31D231F69E3002F6F71 /* AppDelegate.swift in Sources */,
