@@ -298,13 +298,23 @@ struct TLV {
         var buff = Array(string)
         while buff.count > 0 {
             var index = 0
-            let id = String(buff[index..<index + idLength])
+            var endIndex = index + idLength
+            guard buff.count > endIndex - 1 else { return nil }
+            let id = String(buff[index..<endIndex])
+            
             index += idLength
-            guard let lenght = Int(String(buff[index..<index + lengthLength])) else { return nil }
+            endIndex = index + lengthLength
+            guard buff.count > endIndex - 1 else { return nil }
+            guard let lenght = Int(String(buff[index..<endIndex])) else { return nil }
+            
             index += lengthLength
-            let value = String(buff[index..<index + lenght])
+            endIndex = index + lenght
+            guard buff.count > endIndex - 1 else { return nil }
+            let value = String(buff[index..<endIndex])
+            
             index += lenght
-            let remain = buff[index..<buff.count]
+            endIndex = buff.count
+            let remain = buff[index..<endIndex]
             buff = Array(remain)
             entries[id] = value
         }
